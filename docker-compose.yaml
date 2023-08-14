@@ -1,0 +1,34 @@
+version: '3.8'
+
+networks:
+  mysql8-network:
+    driver: bridge
+
+volumes:
+  db:
+  logs:
+
+services:
+  mysql:
+    image: mysql:8.0.27
+    container_name: mysql8_db
+    # environment:
+    #  MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    #  MYSQL_DATABASE: ${MYSQL_DATABASE}
+    #  MYSQL_USER: ${MYSQL_USER}
+    #  MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+      - logs:/var/log/mysql
+    networks:
+      - mysql8-network
+    env_file: ./env/.${ENV}.env
+
+  cli:
+    image: mysql:8.0.27
+    networks:
+      - mysql8-network
+    command: mysql -hmysql -u${MYSQL_USER} -p${MYSQL_PASSWORD}
