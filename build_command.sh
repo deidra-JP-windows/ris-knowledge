@@ -38,6 +38,13 @@ elif [ "$1" = "exec" ]; then
   fi
   MSYS_NO_PATHCONV=1 docker exec -it ris-knowledge /bin/bash -c "cd /ris-knowledge && exec /bin/bash"
 
+
+# stop
+elif [ "$1" = "stop" ]; then
+  echo "コンテナを停止します..."
+  docker stop ris-knowledge
+
+
 # down
 elif [ "$1" = "down" ]; then
   echo "コンテナを停止して削除します..."
