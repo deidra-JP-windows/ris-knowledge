@@ -1,17 +1,12 @@
 # 目次
 
-- [AWSコスト・メトリクス技術メモ](#awsコストメトリクス技術メモ)
-- [メトリクスの種類と特徴](#メトリクスの種類と特徴)
 - [AWSコスト管理の実践](#awsコスト管理の実践)
 - [Cost ExplorerでRefund（払い戻し）を除外する方法](#cost-explorerでrefund払い戻しを除外する方法)
 - [要約（Refund除外のポイントまとめ）](#要約refund除外のポイントまとめ)
 - [CURとCost Explorerの違い・注意点](#curとcost-explorerの違い注意点)
 - [Athenaクエリ設計の注意点](#athenaクエリ設計の注意点)
 - [多層防御（Defense in Depth）](#多層防御defense-in-depth)
-- [AWS CloudWatch メトリクスの区間・データポイント数と集約の仕組み](#aws-cloudwatch-メトリクスの区間データポイント数と集約の仕組み)
-- [CloudWatch メトリクスの保持期間まとめ](#cloudwatch-メトリクスの保持期間まとめ)
-- [ダッシュボードと生メトリクスの手動計算時の注意点](#ダッシュボードと生メトリクスの手動計算時の注意点)
-- [カスタムメトリクスのゼロ値送信・パーセンタイル・トリム平均のポイント](#カスタムメトリクスのゼロ値送信パーセンタイルトリム平均のポイント)
+- [PIプランニング（Program Increment Planning）](#piプランニングprogram-increment-planning)
 
 ---
 # AWSコスト管理の実践
