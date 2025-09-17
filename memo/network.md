@@ -48,3 +48,30 @@ Ymaxのルータ（WiMAXホームルーター）は、**電波受信機能と自
 [8](https://support.broad-isp.jp/wimax/operation-setting/device/speed-wi-fi-home-5g-l13/)
 [9](https://monster-mobile.jp/manual/dock5g01.php)
 [10](https://support.broad-isp.jp/wimax/operation-setting/device/l11/)
+
+社内VPNを最短で構築する際の実務手順は主に以下の3ステップです。[1][3][6]
+
+1. **VPNルーターの用意**
+   - 既存ルーターがVPN対応していなければ、VPNサーバ機能付きルーターを購入またはレンタルします。
+   - 対応プロトコル（OpenVPN、L2TP/IPsecなど）や同時接続数など要件に合致しているか確認します。
+
+2. **VPNルーターの設置・初期設定**
+   - VPN通信を行う拠点（本社や支社）にVPNルーターを設置します。
+   - VPN接続設定を行い、プロトコル選択・ユーザー認証情報・接続先IPアドレスなどを登録します。
+
+3. **端末へのVPN接続設定とテスト**
+   - リモートアクセスするPCやスマートフォンにVPNクライアント設定を施し、接続テストを実施します。
+   - 必要に応じて専用VPNクライアントソフトをインストールします。
+
+この3段階を順に進めることで、比較的短期間で社内VPNの構築が可能です。[3][6][1]
+
+[1](https://www.ctcsp.co.jp/itspice/topic/087)
+[2](https://it-trend.jp/vpn/article/how-to-use)
+[3](https://www.intercom.co.jp/remoteoperator/helpdesk/column/vpn-construction/)
+[4](https://www.kddimatomete.com/magazine/241129000000/)
+[5](https://www.nttpc.co.jp/column/network/internal_network.html)
+[6](https://www.c-ntn.co.jp/knowledge/vpn-2/)
+[7](https://www.ah-tech.net/news/20240509.html)
+[8](https://www.cachatto.jp/column/article/051.html)
+[9](https://www.itscom.co.jp/forbiz/column/vpn/1654/)
+[10](https://www.c-ntn.co.jp/knowledge/vpn_network/)

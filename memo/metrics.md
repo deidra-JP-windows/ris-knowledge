@@ -195,4 +195,44 @@ AWSのメトリクス（特にCloudWatch）の保持期間は、データの粒�
 - パーセンタイルは「何％のデータがしきい値を下回るか」を示し、分布管理に有用
 - トリム平均は外れ値排除して安定平均を求めるもので、より正確な代表値抽出に役立つ
 
-チームトポロジーは、ソフトウェア開発組織の構造を最適化するためのモデルであり、SRE（Site Reliability Engineering）と強く関連しています。[1][6][10]
+
+---
+
+## CloudWatchメトリクスのエンドタイム・端数の扱い
+
+AWS CloudWatchのメトリクスをクエリする際、エンドタイム（終了時間）は **exclusive（排他的）** 扱いとなり、指定した時間の直前までのデータが取得対象となります。また、秒などの端数については、期間（period）の設定により切り捨てや調整が行われます。[1][5][14]
+
+### エンドタイムの扱い
+
+- CloudWatch API（GetMetricData等）では、`startTime` から `endTime` の **endTime直前まで** のデータが返されます。[14]
+- 例：`endTime` に `13:00:00` を指定した場合、`12:59:59` までのデータが返され、「13:00:00」は含まれません。[14]
+
+### 端数・期間（period）の扱い
+
+- CloudWatchのメトリクスは指定した期間（period）の倍数で集約されるため、エンドタイムに端数が含まれる場合、端数部分は集約の粒度により **切り捨て** または無視されることがあります。[1]
+- 例：1分単位で集約すると、指定された `endTime` が `00:01:30` のような端数の場合、`00:01:00` までの集約データとなります。[1]
+
+### 参考ドキュメント
+
+- AWS公式APIリファレンス「GetMetricData」にてendTimeはexclusiveであることが記載されています。[14]
+- 期間（period）の設定やメトリクスの集約単位については公式ドキュメントで詳細に説明されています。[5][1]
+
+> **結論：CloudWatchのメトリクスクエリは、endTimeがexclusiveで、期間集約により端数は切り捨てられます。** [5][1][14]
+
+[1]: https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html
+[2]: https://pages.awscloud.com/rs/112-TZM-766/images/AWS-Black-Belt_2023_AmazonCloudWatch_0330_v1.pdf
+[3]: https://qiita.com/WebEngrChild/items/0cb4c11177177092065d
+[4]: https://iga-ninja.hatenablog.com/entry/2017/11/04/030431
+[5]: https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/nw-monitor-time-frame.html
+[6]: https://dev.classmethod.jp/articles/ga-amazon-cloudwatch-metrics-insights/
+[7]: https://aws.amazon.com/jp/blogs/news/category/amazon-cloudwatch/page/2/
+[8]: https://qiita.com/b-mente/items/73aed97089caef43e625
+[9]: https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/Best_Practice_Recommended_Alarms_AWS_Services.html
+[10]: https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/using-metric-math.html
+[11]: https://aws.amazon.com/jp/blogs/news/category/amazon-cloudwatch/
+[12]: https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/publishingMetrics.html
+[13]: https://aws.amazon.com/jp/cloudwatch/faqs/
+[14]: https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html
+[15]: https://dev.classmethod.jp/articles/2018-aws-re-entering-cloudwatch/
+[16]: https://zenn.dev/myatti/articles/571fad4e9e6a2b
+[17]: https://zenn.dev/tatsuo48/articles/8f436c4a057961
