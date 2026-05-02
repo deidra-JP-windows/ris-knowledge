@@ -131,6 +131,7 @@ PR作成時は以下のテンプレートを参考に、必要事項を記載し
 
 ## GitHub運用方針
 - **Collaborators and teams** で許可したユーザーのみWrite権限を付与し、不要なユーザーのpush権限を制限します。
+- GitHub Actions の設定（Approval for running fork pull request workflows）で **Require approval for all external contributors** を有効化し、外部コントリビューター起点のWorkflow実行はメンテナー承認必須とすることで、意図しないWorkflow実行を防止します。
 - **rulesetの導入**により、以下のブランチ保護・セキュリティ強化を実施します。
   - mainブランチへの直接push禁止（必ずPull Request経由）
   - Pull Request必須・レビュー必須（例: 1名以上の承認）
